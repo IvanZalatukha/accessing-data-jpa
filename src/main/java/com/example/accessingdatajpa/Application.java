@@ -1,6 +1,7 @@
 package com.example.accessingdatajpa;
 
 
+import com.example.accessingdatajpa.model.Customer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -41,14 +42,16 @@ public class Application {
         System.out.println();
 
         // fetch customers by last name
-        List<Customer> bauers = repository.findByLastName("Bauer");
+        List<Customer> bauers = repository.findByPassword("Bauer");
         System.out.println("Customer found with findByLastName('Bauer'):");
         System.out.println("--------------------------------------------");
         for (Customer bauer : bauers) {
             System.out.println(bauer);
         }
 
-        repository.deleteById(1L);
+
+
+
         context.close();
     }
 
