@@ -27,7 +27,7 @@ public class AccessingDataJpaApplication {
 		cars.add(car2);
 		customer.setCars(cars);
 
-		repository.save(customer);
+		repository.deleteById(1L);
 
 	}
 
