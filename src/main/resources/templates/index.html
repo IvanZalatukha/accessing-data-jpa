@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+
+    <script th:src="@{/main.js}"></script>
+    <link th:href="@{/main.css}" rel="stylesheet" />
+
+    <head>
+<body ng-app="ParkingManagement" ng-controller="ParkingController">
+<h3>
+    CRUD: Spring Boot + Rest + AngularJS
+</h3>
+<form ng-submit="submitParking()">
+    <table border="0">
+        <tr>
+            <td>Parking id</td>
+            <td>{{parking.id}}</td>
+        </tr>
+        <tr>
+            <td>Parking name</td>
+            <td>{{parking.name}}</td>
+        </tr>
+        <tr>
+            <td>Coordinate X</td>
+            <td><input type="text" ng-model="parking.coordinateX" /></td>
+        </tr>
+        <tr>
+            <td>Coordinate Y</td>
+            <td><input type="text" ng-model="parking.coordinateY"  /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Submit" class="blue-button" />
+            </td>
+        </tr>
+    </table>
+</form>
+<br/>
+<a class="create-button" ng-click="createParking()">Clear forms</a>
+<table border="1">
+    <tr>
+        <th>Parking id</th>
+        <th>Parking name</th>
+        <th>Coordinate X</th>
+        <th>Coordinate Y</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <!-- $scope.employees -->
+    <tr ng-repeat="parking in parkings">
+        <td> {{ parking.id }}</td>
+        <td> {{ parking.name }}</td>
+        <td> {{ parking.coordinateX }}</td>
+        <td >{{ parking.coordinateY }}</td>
+        <td>
+            <a ng-click="editParking(parking)" class="edit-button">Edit</a>
+        </td>
+        <td>
+            <a ng-click="deleteParking(parking)" class="delete-button">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
