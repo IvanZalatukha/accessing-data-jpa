@@ -2,6 +2,7 @@ package com.example.accessingdatajpa.controller;
 
 import com.example.accessingdatajpa.entity.Parking;
 import com.example.accessingdatajpa.service.ParkingService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -9,15 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Api
 public class ParkingController {
     @Autowired
     private ParkingService parkingService;
 
-    @RequestMapping(value = "/parkings", //
-            method = RequestMethod.GET, //
+    @GetMapping(path = "/parkings", //
             produces = { MediaType.APPLICATION_JSON_VALUE, //
                     MediaType.APPLICATION_XML_VALUE })
-    @ResponseBody
     public List<Parking> getParkings() {
         System.out.println("(Service Side) Get all parkings with name: " + parkingService.getAll());
         return parkingService.getAll();
@@ -53,7 +53,7 @@ public class ParkingController {
     @ResponseBody
     public Parking updateParking(@RequestBody Parking parking) {
 
-        System.out.println("(Service Side) Editing parking with name: " + parking.getName());
+        System.out.println("(Service Side) Updating parking with name: " + parking.getName());
 
         return parkingService.updateParking(parking);
     }
