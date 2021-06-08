@@ -5,7 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
 
     <script th:src="@{/main.js}"></script>
-    <link th:href="@{/main.css}" rel="stylesheet" />
+    <link th:href="@{/main.css}" rel="stylesheet"/>
 
     <head>
 <body ng-app="ParkingManagement" ng-controller="ParkingController">
@@ -16,29 +16,29 @@
     <table border="0">
         <tr>
             <td>Parking id</td>
-            <td><input type="number" ng-model="parking.id" /></td>
+            <td>{{parking.id}}</td>
         </tr>
         <tr>
             <td>Parking name</td>
-            <td><input type="text" ng-model="parking.name" /></td>
+            <td><input type="text" ng-model="parking.name"/></td>
         </tr>
         <tr>
             <td>Coordinate X</td>
-            <td><input type="text" ng-model="parking.coordinateX" /></td>
+            <td><input type="text" ng-model="parking.coordinateX"/></td>
         </tr>
         <tr>
             <td>Coordinate Y</td>
-            <td><input type="text" ng-model="parking.coordinateY"  /></td>
+            <td><input type="text" ng-model="parking.coordinateY"/></td>
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Submit" class="blue-button" />
+                <input type="submit" value="Submit" class="blue-button"/>
             </td>
         </tr>
     </table>
 </form>
 <br/>
-<a class="create-button" ng-click="createParking()">Clear forms</a>
+<a class="create-button" ng-click="clearForms()">Clear forms</a>
 <table border="1">
     <tr>
         <th>Parking id</th>
@@ -53,7 +53,7 @@
         <td> {{ parking.id }}</td>
         <td> {{ parking.name }}</td>
         <td> {{ parking.coordinateX }}</td>
-        <td >{{ parking.coordinateY }}</td>
+        <td>{{ parking.coordinateY }}</td>
         <td>
             <a ng-click="editParking(parking)" class="edit-button">Edit</a>
         </td>
