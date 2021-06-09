@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class ParkingServiceImpl implements ParkingService {
 
+    private final ParkingRepository parkingRepository;
+
     @Autowired
-    private ParkingRepository parkingRepository;
+    public ParkingServiceImpl(ParkingRepository parkingRepository) {
+        this.parkingRepository = parkingRepository;
+    }
 
     @Override
     public Parking addParking(Parking parking) {

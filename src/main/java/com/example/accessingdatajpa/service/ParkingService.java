@@ -1,9 +1,11 @@
 package com.example.accessingdatajpa.service;
 
 import com.example.accessingdatajpa.entity.Parking;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ParkingService {
     Parking addParking(Parking parking);
     void delete(Long id);

@@ -6,22 +6,17 @@ import javax.persistence.*;
 @Table(name = "parking")
 public class Parking {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
     private String name;
-    @Column
     private Double coordinateX;
-    @Column
     private Double coordinateY;
 
     public Parking() {
     }
 
     public Parking(String name, Double coordinateX, Double coordinateY) {
-        this.name = name;
-        this.coordinateX = coordinateX;
-        this.coordinateY = coordinateY;
+        this(null, name, coordinateX, coordinateY);
     }
 
     public Parking(Long id, String name, Double coordinateX, Double coordinateY) {

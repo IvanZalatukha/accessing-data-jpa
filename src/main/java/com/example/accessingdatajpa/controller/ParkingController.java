@@ -3,7 +3,6 @@ package com.example.accessingdatajpa.controller;
 import com.example.accessingdatajpa.entity.Parking;
 import com.example.accessingdatajpa.service.ParkingService;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,12 @@ import java.util.List;
 @RestController
 @Api
 public class ParkingController {
-    @Autowired
-    private ParkingService parkingService;
+
+    private final ParkingService parkingService;
+
+    public ParkingController(ParkingService parkingService) {
+        this.parkingService = parkingService;
+    }
 
     @GetMapping(path = "/parkings", //
             produces = { MediaType.APPLICATION_JSON_VALUE, //
@@ -24,21 +27,17 @@ public class ParkingController {
     }
 
 
-    @RequestMapping(value = "/parking/{id}", //
-            method = RequestMethod.GET, //
+    @GetMapping(value = "/parking/{id}", //
             produces = { MediaType.APPLICATION_JSON_VALUE, //
                     MediaType.APPLICATION_XML_VALUE })
-    @ResponseBody
     public Parking getParking(@PathVariable("id") Long id) {
         System.out.println("(Service Side) getById parking with getById(parkId) " + parkingService.getById(id));
         return parkingService.getById(id);
     }
 
-    @RequestMapping(value = "/parking", //
-            method = RequestMethod.POST, //
+    @PostMapping(value = "/parking", //
             produces = { MediaType.APPLICATION_JSON_VALUE, //
                     MediaType.APPLICATION_XML_VALUE })
-    @ResponseBody
     public Parking addParking(@RequestBody Parking parking) {
 
         System.out.println("(Service Side) Creating parking with name: " + parking.getName());
@@ -46,11 +45,9 @@ public class ParkingController {
         return parkingService.addParking(parking);
     }
 
-    @RequestMapping(value = "/parking", //
-            method = RequestMethod.PUT, //
+    @PutMapping(value = "/parking", //
             produces = { MediaType.APPLICATION_JSON_VALUE, //
                     MediaType.APPLICATION_XML_VALUE })
-    @ResponseBody
     public Parking updateParking(@RequestBody Parking parking) {
 
         System.out.println("(Service Side) Updating parking with name: " + parking.getName());
@@ -58,10 +55,8 @@ public class ParkingController {
         return parkingService.updateParking(parking);
     }
 
-    @RequestMapping(value = "/parking/{id}", //
-            method = RequestMethod.DELETE, //
+    @DeleteMapping(value = "/parking/{id}", //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    @ResponseBody
     public void deleteEmployee(@PathVariable("id") Long id) {
 
         System.out.println("(Service Side) Deleting parking with Id: " + id);
