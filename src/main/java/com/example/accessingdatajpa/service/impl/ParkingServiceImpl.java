@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ParkingServiceImpl implements ParkingService {
@@ -34,8 +35,8 @@ public class ParkingServiceImpl implements ParkingService {
     }
 
     @Override
-    public Parking getById(Long id) {
-        return parkingRepository.getOne(id);
+    public Optional<Parking> getById(Long id) {
+        return parkingRepository.findById(id);
     }
 
     @Override
@@ -46,5 +47,10 @@ public class ParkingServiceImpl implements ParkingService {
     @Override
     public List<Parking> getAll() {
         return parkingRepository.findAll();
+    }
+
+    @Override
+    public void deleteAll() {
+        parkingRepository.deleteAll();
     }
 }

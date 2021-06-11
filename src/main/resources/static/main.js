@@ -53,11 +53,21 @@ app.controller("ParkingController", function ($scope, $http) {
 
     // In case of edit
     $scope.editParking = function (parking) {
+               $http({
+            method: 'GET',
+            url: '/parking/' + parking.id,
+            data: angular.toJson($scope.parking),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
         $scope.parking.id = parking.id;
         $scope.parking.name = parking.name;
         $scope.parking.coordinateX = parking.coordinateX;
         $scope.parking.coordinateY = parking.coordinateY;
     };
+
 
     // Private Method
     // HTTP GET- get all parking collection
